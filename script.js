@@ -17,7 +17,13 @@ require([
         map: map,
         center: [-7.62, 33.59], // Longitude, latitude
         zoom: 13, // Zoom level
-        container: "viewDiv" // Div element
+        container: "viewDiv", // Div element
+        popup: {
+            dockEnabled: false, // Désactive l'ancrage automatique
+            autoOpenEnabled: true, // Permet l'ouverture automatique
+            collapseEnabled: true, // Permet de réduire le popup
+            highlightEnabled: true // Met en surbrillance la feature sélectionnée
+        }
     });
 
     const basemapToggle = new BasemapToggle({
@@ -179,16 +185,19 @@ require([
         document.getElementById("filterSelect").value = "";
         document.getElementById("hotelFilter").value = "";
         document.getElementById("surfaceFilter").value = "";
+        document.getElementById("populationFilter").value = "";
+
 
         // Réinitialiser les couches
         communes.definitionExpression = "";
         hotels.definitionExpression = "";
         grandeSurface.definitionExpression = "";
+        casaPop.definitionExpression = "";
 
         // Recentrer la vue
         view.goTo({
             center: [-7.62, 33.59],
-            zoom: 13
+            zoom: 10
         });
     });
 
@@ -205,6 +214,11 @@ require([
     // Filtre pour les grandes surfaces
     document.getElementById("surfaceFilter").addEventListener("change", function (event) {
         grandeSurface.definitionExpression = event.target.value;
+    });
+
+    // Filtre pour les population
+    document.getElementById("populationFilter").addEventListener("change", function (event) {
+        casaPop.definitionExpression = event.target.value;
     });
 
 
