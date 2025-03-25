@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://js.arcgis.com/4.26/"></script>
+    <title>Géoportail Casablanca</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.26/"></script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+
+    <div id="filtersContainer">
+        <div id="filtersPanel">
+            <h3>Filtres</h3>
+
+            <div class="filter-group">
+                <label for="filterSelect">Communes :</label>
+                <select id="filterSelect">
+                    <option value="">-- Toutes les communes --</option>
+                    <optgroup label="Préfecture">
+                        <option value="PREFECTURE = 'PROVINCE DE NOUACEUR'">PROVINCE DE NOUACEUR</option>
+                        <option value="PREFECTURE = 'PREFECTURE DE CASABLANCA'">PREFECTURE DE CASABLANCA</option>
+                        <option value="PREFECTURE = 'PREFECTURE DE MOHAMMEDIA'">PREFECTURE DE MOHAMMEDIA</option>
+                        <option value="PREFECTURE = 'PROVINCE DE BEN SLIMANE'">PROVINCE DE BEN SLIMANE</option>
+                        <option value="PREFECTURE = 'PROVINCE DE MEDIOUNA'">PROVINCE DE MEDIOUNA</option>
+                    </optgroup>
+                    <optgroup label="Commune/Arrondissement">
+                        <option value="COMMUNE_AR = 'MUNICIPALITE NOUACEUR'">MUNICIPALITE NOUACEUR</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE OULED SALEH'">COMMUNE RURALE OULED SALEH</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE OULED AZZOUZ'">COMMUNE RURALE OULED AZZOUZ</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE DAR BOUAZZA'">MUNICIPALITE DAR BOUAZZA</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE TIT MELLIL'">MUNICIPALITE TIT MELLIL</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT BEN M'SICK'">ARRONDISSEMENT BEN M'SICK</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT EL FIDA'">ARRONDISSEMENT EL FIDA</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SIDI OTHMANE'">ARRONDISSEMENT SIDI OTHMANE</option>
+                        <option value="COMMUNE_AR = 'COMMUNE DU MECHOUAR'">COMMUNE DU MECHOUAR</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT MERS SULTAN'">ARRONDISSEMENT MERS SULTAN</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT MAARIF'">ARRONDISSEMENT MAARIF</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT HAY MOHAMMADI'">ARRONDISSEMENT HAY MOHAMMADI
+                        </option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT ESSOUKHOUR ASSAWDA'">ARRONDISSEMENT ESSOUKHOUR
+                            ASSAWDA
+                        </option>
+                        <option value="COMMUNE_AR = 'ARRONDISEMENT ANFA'">ARRONDISEMENT ANFA</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SIDI BELYOUT'">ARRONDISSEMENT SIDI BELYOUT</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE AIN HARROUDA'">MUNICIPALITE AIN HARROUDA</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE MANSOURIA'">MUNICIPALITE MANSOURIA</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE LAHRAOUIYINE'">MUNICIPALITE LAHRAOUIYINE</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE BOUSKOURA'">MUNICIPALITE BOUSKOURA</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE MEJJATIA OULED TALEB'">COMMUNE RURALE MEJJATIA OULED
+                            TALEB
+                        </option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE MEDIOUNA'">MUNICIPALITE MEDIOUNA</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE ECHELLALATE'">COMMUNE RURALE ECHELLALATE</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI MOUSSA BEN MEJDOUB'">COMMUNE RURALE SIDI MOUSSA
+                            BEN
+                            MEJDOUB</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE BENI YACKLEF'">COMMUNE RURALE BENI YACKLEF</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE MOHAMMEDIA'">MUNICIPALITE MOHAMMEDIA</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI HAJJAJ OUED HASSAR'">COMMUNE RURALE SIDI HAJJAJ
+                            OUED
+                            HASSAR</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI MOUSSA BEN ALI'">COMMUNE RURALE SIDI MOUSSA BEN
+                            ALI
+                        </option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SIDI MOUMEN'">ARRONDISSEMENT SIDI MOUMEN</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SBATA'">ARRONDISSEMENT SBATA</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT AIN CHOCK'">ARRONDISSEMENT AIN CHOCK</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT MOULAY R'CHID'">ARRONDISSEMENT MOULAY R'CHID
+                        </option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT HAY HASSANI'">ARRONDISSEMENT HAY HASSANI</option>
+                    </optgroup>
+                    <optgroup label="Surface">
+                        <option value="Shape_Area < 1000000">Très petites (< 1M m²)</option>
+                        <option value="Shape_Area BETWEEN 1000000 AND 10000000">Petites (1M - 10M m²)</option>
+                        <option value="Shape_Area BETWEEN 10000000 AND 50000000">Moyennes (10M - 50M m²)</option>
+                        <option value="Shape_Area BETWEEN 50000000 AND 100000000">Grandes (50M - 100M m²)</option>
+                        <option value="Shape_Area > 100000000">Très grandes (> 100M m²)</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="hotelFilter">Hôtels :</label>
+                <select id="hotelFilter">
+                    <option value="">-- Tous les hôtels --</option>
+                    <option value="CATÉGORIE = '1*'">1 Étoile</option>
+                    <option value="CATÉGORIE = '2*'">2 Étoiles</option>
+                    <option value="CATÉGORIE = '3*'">3 Étoiles</option>
+                    <option value="CATÉGORIE = '4*'">4 Étoiles</option>
+                    <option value="CATÉGORIE = '5*'">5 Étoiles</option>
+                    <option value="CATÉGORIE = '5* luxe'">5 Étoiles de luxe</option>
+                    <option value="CATÉGORIE = 'c conf'">c conf</option>
+                    <option value="CATÉGORIE = 'C.C'">C.C</option>
+                    <option value="CATÉGORIE = 'cinema'">cinema</option>
+                    <option value="CATÉGORIE = 'Maison d'Hôtes'">Maison d'Hôtes</option>
+                    <option value="CATÉGORIE = 'P expo'">P expo</option>
+                    <option value="CATÉGORIE = 'RT 1ère CAT. (c'">RT 1ère CAT. (c</option>
+                    <option value="CATÉGORIE = 'RT 2ème CAT'">RT 2ème CAT</option>
+                    <option value="CATÉGORIE = 'V.V.T 2ème C'">V.V.T 2ème C</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="surfaceFilter">Grandes surfaces :</label>
+                <select id="surfaceFilter">
+                    <option value="">-- Tous les types --</option>
+                    <option value="Type = 'Acima'">Acima</option>
+                    <option value="Type = 'Grande Surface Spécialisée'">Grande Surface Spécialisée</option>
+                    <option value="Type = 'LABEL VIE'">LABEL VIE</option>
+                    <option value="Type = 'Marina'">Marina</option>
+                    <option value="Type = 'Marjane'">Marjane</option>
+                    <option value="Type = 'Metro'">Metro</option>
+                    <option value="Type = 'Twin Center'">Twin Center</option>
+                </select>
+            </div>
+
+            <button id="resetFilters">Réinitialiser</button>
+        </div>
+        <button id="toggleFilters">☰ Filtres</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
