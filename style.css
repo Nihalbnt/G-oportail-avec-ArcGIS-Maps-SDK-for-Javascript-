@@ -25,6 +25,8 @@ body,
     margin-bottom: 10px;
     width: 250px;
     display: none;
+    max-height: 400px;  /* Définit une hauteur maximale */
+    overflow-y: auto;   /* Active la barre de défilement verticale */
 }
 
 #filtersPanel.visible {
@@ -80,5 +82,51 @@ body,
 }
 
 #toggleFilters:hover {
+    background-color: #45a049;
+}
+
+/* Style pour la section de réclamation */
+#reclamationForm {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+#reclamationForm h3 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+#reclamationForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+#reclamationForm input,
+#reclamationForm textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+#reclamationForm button {
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#reclamationForm button:hover {
     background-color: #45a049;
 }

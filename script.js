@@ -177,6 +177,62 @@ require([
     view.ui.add(legendExpand, "bottom-right");  // Ajout du widget Expand à l'interface utilisateur
 
 
+    // Outils d'édition pour ajouter des réclamations
+    const sketchViewModel = new SketchViewModel({
+        view: view,
+        layer: new GraphicsLayer()
+    });
+
+    const sketchWidget = new Sketch({
+        view: view,
+        layer: new GraphicsLayer(),
+        creationMode: "update"
+    });
+
+    view.ui.add(sketchWidget, "bottom-left" , 2 );
+
+    // Fonction pour ajouter une réclamation
+    document.getElementById("addReclamation").addEventListener("click", function() {
+        const objet = document.getElementById("objet").value;
+        const message = document.getElementById("message").value;
+        const mail = document.getElementById("mail").value;
+
+        if (objet && message && mail) {
+            const point = view.center;
+
+            const newReclamation = {
+                attributes: {
+                    Objet: objet,
+                    Message: message,
+                    Demarche_d: "Nouveau", // Vous pouvez ajuster selon les valeurs
+                    Mail: mail
+                },
+                geometry: point
+            };
+
+            reclamation.applyEdits({
+                addFeatures: [newReclamation]
+            }).then(() => {
+                alert("Réclamation ajoutée avec succès !");
+            }).catch((error) => {
+                console.error("Erreur lors de l'ajout de la réclamation", error);
+            });
+        } else {
+            alert("Veuillez remplir tous les champs.");
+        }
+    });
+
+    // Fonction pour filtrer les réclamations selon un objet spécifique
+    document.getElementById("filterSelect").addEventListener("change", function(event) {
+        const selectedCommune = event.target.value;
+        reclamation.definitionExpression = selectedCommune ? `COMMUNE_AR = '${selectedCommune}'` : "";
+    });
+
+    // Réinitialiser les filtres
+    document.getElementById("resetFilters").addEventListener("click", function() {
+        reclamation.definitionExpression = "";
+        view.goTo({ center: [-7.62, 33.59], zoom: 13 });
+    });
     // Fonction de requête spatiale
     function queryFeaturelayer(geometry) {
         const communeQuery = {

@@ -149,10 +149,32 @@
                     <option value="evolution_ > 100000">Évolution 1994-2004 > 100,000</option>
                 </select>
             </div>
+            <!-- Formulaire de réclamation -->
+            <div id="reclamationForm">
+                <h3>Gestion des réclamations</h3>
+                <div class="filter-group">
+                    <label for="Objet">Objet :</label>
+                    <input type="text" id="Objet" placeholder="Objet de la réclamation" />
+                </div>
+                <div class="filter-group">
+                    <label for="Message">Message :</label>
+                    <textarea id="Message" placeholder="Votre message de réclamation"></textarea>
+                </div>
+                <div class="filter-group">
+                    <label for="Mail">Email :</label>
+                    <input type="email" id="Mail" placeholder="Votre email" />
+                </div>
+                <div class="filter-group">
+                    <button id="addReclamation">Ajouter Réclamation</button>
+                </div>
+            </div>
+
             <button id="resetFilters">Réinitialiser</button>
         </div>
         <button id="toggleFilters">☰ Filtres</button>
     </div>
+
+
 
     <script src="script.js"></script>
 </body>
