@@ -13,67 +13,53 @@
 
 <body>
     <div id="viewDiv"></div>
-
     <div id="filtersContainer">
         <div id="filtersPanel">
             <h3>Filtres</h3>
-
             <div class="filter-group">
                 <label for="filterSelect">Communes :</label>
                 <select id="filterSelect">
                     <option value="">-- Toutes les communes --</option>
-                    <optgroup label="Préfecture">
-                        <option value="PREFECTURE = 'PROVINCE DE NOUACEUR'">PROVINCE DE NOUACEUR</option>
+                    <optgroup label="Préfecture/Province">
                         <option value="PREFECTURE = 'PREFECTURE DE CASABLANCA'">PREFECTURE DE CASABLANCA</option>
                         <option value="PREFECTURE = 'PREFECTURE DE MOHAMMEDIA'">PREFECTURE DE MOHAMMEDIA</option>
+                        <option value="PREFECTURE = 'PROVINCE DE NOUACEUR'">PROVINCE DE NOUACEUR</option>
                         <option value="PREFECTURE = 'PROVINCE DE BEN SLIMANE'">PROVINCE DE BEN SLIMANE</option>
                         <option value="PREFECTURE = 'PROVINCE DE MEDIOUNA'">PROVINCE DE MEDIOUNA</option>
                     </optgroup>
                     <optgroup label="Commune/Arrondissement">
-                        <option value="COMMUNE_AR = 'MUNICIPALITE NOUACEUR'">MUNICIPALITE NOUACEUR</option>
+                        <option value="COMMUNE_AR = 'COMMUNE DU MECHOUAR'">COMMUNE DU MECHOUAR</option>
                         <option value="COMMUNE_AR = 'COMMUNE RURALE OULED SALEH'">COMMUNE RURALE OULED SALEH</option>
                         <option value="COMMUNE_AR = 'COMMUNE RURALE OULED AZZOUZ'">COMMUNE RURALE OULED AZZOUZ</option>
-                        <option value="COMMUNE_AR = 'MUNICIPALITE DAR BOUAZZA'">MUNICIPALITE DAR BOUAZZA</option>
-                        <option value="COMMUNE_AR = 'MUNICIPALITE TIT MELLIL'">MUNICIPALITE TIT MELLIL</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE MEJJATIA OULED TALEB'">COMMUNE RURALE MEJJATIA OULED TALEB</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE ECHELLALATE'">COMMUNE RURALE ECHELLALATE</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI MOUSSA BEN MEJDOUB'">COMMUNE RURALE SIDI MOUSSA BEN MEJDOUB</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE BENI YACKLEF'">COMMUNE RURALE BENI YACKLEF</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI HAJJAJ OUED HASSAR'">COMMUNE RURALE SIDI HAJJAJ OUED HASSAR</option>
+                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI MOUSSA BEN ALI'">COMMUNE RURALE SIDI MOUSSA BENALI</option>
                         <option value="COMMUNE_AR = 'ARRONDISSEMENT BEN M'SICK'">ARRONDISSEMENT BEN M'SICK</option>
                         <option value="COMMUNE_AR = 'ARRONDISSEMENT EL FIDA'">ARRONDISSEMENT EL FIDA</option>
                         <option value="COMMUNE_AR = 'ARRONDISSEMENT SIDI OTHMANE'">ARRONDISSEMENT SIDI OTHMANE</option>
-                        <option value="COMMUNE_AR = 'COMMUNE DU MECHOUAR'">COMMUNE DU MECHOUAR</option>
                         <option value="COMMUNE_AR = 'ARRONDISSEMENT MERS SULTAN'">ARRONDISSEMENT MERS SULTAN</option>
                         <option value="COMMUNE_AR = 'ARRONDISSEMENT MAARIF'">ARRONDISSEMENT MAARIF</option>
-                        <option value="COMMUNE_AR = 'ARRONDISSEMENT HAY MOHAMMADI'">ARRONDISSEMENT HAY MOHAMMADI
-                        </option>
-                        <option value="COMMUNE_AR = 'ARRONDISSEMENT ESSOUKHOUR ASSAWDA'">ARRONDISSEMENT ESSOUKHOUR
-                            ASSAWDA
-                        </option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT HAY MOHAMMADI'">ARRONDISSEMENT HAY MOHAMMADI</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT ESSOUKHOUR ASSAWDA'">ARRONDISSEMENT ESSOUKHOUR ASSAWDA</option>
                         <option value="COMMUNE_AR = 'ARRONDISEMENT ANFA'">ARRONDISEMENT ANFA</option>
                         <option value="COMMUNE_AR = 'ARRONDISSEMENT SIDI BELYOUT'">ARRONDISSEMENT SIDI BELYOUT</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SIDI MOUMEN'">ARRONDISSEMENT SIDI MOUMEN</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SBATA'">ARRONDISSEMENT SBATA</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT AIN CHOCK'">ARRONDISSEMENT AIN CHOCK</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT MOULAY R'CHID'">ARRONDISSEMENT MOULAY R'CHID</option>
+                        <option value="COMMUNE_AR = 'ARRONDISSEMENT HAY HASSANI'">ARRONDISSEMENT HAY HASSANI</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE NOUACEUR'">MUNICIPALITE NOUACEUR</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE DAR BOUAZZA'">MUNICIPALITE DAR BOUAZZA</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE TIT MELLIL'">MUNICIPALITE TIT MELLIL</option>                      
                         <option value="COMMUNE_AR = 'MUNICIPALITE AIN HARROUDA'">MUNICIPALITE AIN HARROUDA</option>
                         <option value="COMMUNE_AR = 'MUNICIPALITE MANSOURIA'">MUNICIPALITE MANSOURIA</option>
                         <option value="COMMUNE_AR = 'MUNICIPALITE LAHRAOUIYINE'">MUNICIPALITE LAHRAOUIYINE</option>
                         <option value="COMMUNE_AR = 'MUNICIPALITE BOUSKOURA'">MUNICIPALITE BOUSKOURA</option>
-                        <option value="COMMUNE_AR = 'COMMUNE RURALE MEJJATIA OULED TALEB'">COMMUNE RURALE MEJJATIA OULED
-                            TALEB
-                        </option>
                         <option value="COMMUNE_AR = 'MUNICIPALITE MEDIOUNA'">MUNICIPALITE MEDIOUNA</option>
-                        <option value="COMMUNE_AR = 'COMMUNE RURALE ECHELLALATE'">COMMUNE RURALE ECHELLALATE</option>
-                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI MOUSSA BEN MEJDOUB'">COMMUNE RURALE SIDI MOUSSA
-                            BEN
-                            MEJDOUB</option>
-                        <option value="COMMUNE_AR = 'COMMUNE RURALE BENI YACKLEF'">COMMUNE RURALE BENI YACKLEF</option>
-                        <option value="COMMUNE_AR = 'MUNICIPALITE MOHAMMEDIA'">MUNICIPALITE MOHAMMEDIA</option>
-                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI HAJJAJ OUED HASSAR'">COMMUNE RURALE SIDI HAJJAJ
-                            OUED
-                            HASSAR</option>
-                        <option value="COMMUNE_AR = 'COMMUNE RURALE SIDI MOUSSA BEN ALI'">COMMUNE RURALE SIDI MOUSSA BEN
-                            ALI
-                        </option>
-                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SIDI MOUMEN'">ARRONDISSEMENT SIDI MOUMEN</option>
-                        <option value="COMMUNE_AR = 'ARRONDISSEMENT SBATA'">ARRONDISSEMENT SBATA</option>
-                        <option value="COMMUNE_AR = 'ARRONDISSEMENT AIN CHOCK'">ARRONDISSEMENT AIN CHOCK</option>
-                        <option value="COMMUNE_AR = 'ARRONDISSEMENT MOULAY R'CHID'">ARRONDISSEMENT MOULAY R'CHID
-                        </option>
-                        <option value="COMMUNE_AR = 'ARRONDISSEMENT HAY HASSANI'">ARRONDISSEMENT HAY HASSANI</option>
+                        <option value="COMMUNE_AR = 'MUNICIPALITE MOHAMMEDIA'">MUNICIPALITE MOHAMMEDIA</option>          
                     </optgroup>
                     <optgroup label="Surface">
                         <option value="Shape_Area < 1000000">Très petites (< 1M m²)</option>
@@ -84,7 +70,6 @@
                     </optgroup>
                 </select>
             </div>
-
             <div class="filter-group">
                 <label for="hotelFilter">Hôtels :</label>
                 <select id="hotelFilter">
@@ -105,7 +90,6 @@
                     <option value="CATÉGORIE = 'V.V.T 2ème C'">V.V.T 2ème C</option>
                 </select>
             </div>
-
             <div class="filter-group">
                 <label for="surfaceFilter">Grandes surfaces :</label>
                 <select id="surfaceFilter">
@@ -131,7 +115,6 @@
                     <option value="TOTAL2004 > 200000 AND TOTAL2004 <= 500000">200,000 < Population 2004 ≤
                             500,000</option>
                     <option value="TOTAL2004 > 500000">Population 2004 > 500,000</option>
-
                     <option value="TOTAL1994 <= 50000">Population 1994 ≤ 50,000</option>
                     <option value="TOTAL1994 > 50000 AND TOTAL1994 <= 100000">50,000 < Population 1994 ≤
                             100,000</option>
@@ -140,7 +123,6 @@
                     <option value="TOTAL1994 > 200000 AND TOTAL1994 <= 500000">200,000 < Population 1994 ≤
                             500,000</option>
                     <option value="TOTAL1994 > 500000">Population 1994 > 500,000</option>
-
                     <option value="evolution_ > 0 AND evolution_ <= 10000">Évolution 1994-2004: 0 - 10,000</option>
                     <option value="evolution_ > 10000 AND evolution_ <= 50000">Évolution 1994-2004: 10,000 - 50,000
                     </option>
@@ -168,14 +150,10 @@
                     <button id="addReclamation">Ajouter Réclamation</button>
                 </div>
             </div>
-
             <button id="resetFilters">Réinitialiser</button>
         </div>
         <button id="toggleFilters">☰ Filtres</button>
     </div>
-
-
-
     <script src="script.js"></script>
 </body>
 

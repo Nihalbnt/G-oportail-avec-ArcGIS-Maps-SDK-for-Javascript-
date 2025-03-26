@@ -44,7 +44,7 @@ require([
     //Couche communes et popup
     var popupCommune = new PopupTemplate({
         title: "<b>Commune: {COMMUNE_AR}</b>",
-        content: "<p> PREFECTURE : {PREFECTURE} </p>" + "<p> COMMUNE_AR : {COMMUNE_AR}  </p> " + "<p> Shape_Leng : {Shape_Leng} </p> " + "<p> Shape_Le_1 : {Shape_Le_1} </p> " + "<p> Shape_Area : {Shape_Area} </p> " + "<p> numero : {numero} </p> " + "<p> PLAN_AMENA : {PLAN_AMENA} </p> ",
+        content: "<p> PREFECTURE : {PREFECTURE} </p>" + "<p> COMMUNE : {COMMUNE_AR}  </p> " + "<p> Shape_Leng : {Shape_Leng} </p> " + "<p> Shape_Le_1 : {Shape_Le_1} </p> " + "<p> Shape_Area : {Shape_Area} </p> " + "<p> numéro : {numero} </p> " + "<p> PLAN D'AMENAGEMENT : {PLAN_AMENA} </p> ",
     });
     const communes = new FeatureLayer({
         url: "https://services5.arcgis.com/TbprQ2JL7Oe3pK0F/arcgis/rest/services/Projet_Elaboration_d’un_Géoportail/FeatureServer/5",
@@ -77,7 +77,7 @@ require([
 
     //Couche Population et Popup charts 
     var popupPopulation = new PopupTemplate({
-        title: "<b>Population : {ARRONDISSE}</b>",
+        title: "<b>Population de l'Arrondissement : {ARRONDISSE}</b>",
         content: [
             {
                 type: "fields",
@@ -135,7 +135,7 @@ require([
     //Couche Hotels et popup
     var popupHotels = new PopupTemplate({
         title: "<b>Hotels : {Hotels wgs}</b>",
-        content: "<p> HOTEL : {HOTEL} </p>" + "<p> CATÉGORIE : {CATÉGORIE}  </p> " + "<p> ADRESSE : {ADRESSE} </p>" + "<p> PHONE1 : {PHONE1}  </p> " + "<p> PHONE_2 : {PHONE_2} </p>" + "<p> CAP_CHAMBR : {CAP_CHAMBR}  </p> " + "<p> CAP_LIT : {CAP_LIT} </p>" + "<p> Etoile : {Etoile}  </p> " + "<p> cap_reunio : {cap_reunio}  </p> "
+        content: "<p> HOTEL : {HOTEL} </p>" + "<p> CATÉGORIE : {CATÉGORIE}  </p> " + "<p> ADRESSE : {ADRESSE} </p>" + "<p> PHONE_1 : {PHONE1}  </p> " + "<p> PHONE_2 : {PHONE_2} </p>" + "<p> CAPACITE DES CHAMBRES : {CAP_CHAMBR}  </p> " + "<p> CAPACITES DE LITS : {CAP_LIT} </p>" + "<p> Etoile : {Etoile}  </p> " + "<p> cap_reunio : {cap_reunio}  </p> "
     });
     const hotels = new FeatureLayer({
         url: "https://services5.arcgis.com/TbprQ2JL7Oe3pK0F/arcgis/rest/services/Projet_Elaboration_d’un_Géoportail/FeatureServer/2",
@@ -147,7 +147,7 @@ require([
     //Reclamations
     var popupReclamation = new PopupTemplate({
         title: "<b>Reclamation  : {Reclamation wgs}</b>",
-        content: "<p> Objet : {Objet} </p>" + "<p> Message : {Message}  </p> " + "<p> Demarche_d : {Demarche_d} </p>" + "<p> Mail : {Mail}  </p> "
+        content: "<p> Objet : {Objet} </p>" + "<p> Message : {Message}  </p> " + "<p> Démarche : {Demarche_d} </p>" + "<p> Mail : {Mail}  </p> "
     });
     const reclamation = new FeatureLayer({
         url: "https://services5.arcgis.com/TbprQ2JL7Oe3pK0F/arcgis/rest/services/Projet_Elaboration_d’un_Géoportail/FeatureServer/3",
@@ -193,9 +193,9 @@ require([
 
     // Fonction pour ajouter une réclamation
     document.getElementById("addReclamation").addEventListener("click", function() {
-        const objet = document.getElementById("objet").value;
-        const message = document.getElementById("message").value;
-        const mail = document.getElementById("mail").value;
+        const objet = document.getElementById("Objet").value;
+        const message = document.getElementById("Message").value;
+        const mail = document.getElementById("Mail").value;
 
         if (objet && message && mail) {
             const point = view.center;
