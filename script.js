@@ -77,20 +77,41 @@ require([
 
     //Couche Population et Popup charts 
     var popupPopulation = new PopupTemplate({
-        title: "<b>Population: {Casa population1}</b>",
-        content: [{
-            type: "media",
-            mediaInfos: [{
-                type: "column-chart",
-                caption: "Statistiques de Casablanca",
-                value: {
-                    fields: ["PREFECTURE", "ARRONDISSE", "Shape_Leng", "Shape_Area", "MAROCAINS", "ETRANGERS", "TOTAL1994", "MÉNAGES199", "MAROCAIN_1", "ETRANGER_1", "TOTAL2004", "MÉNAGES200", "TAUX", "densite199", "densite200", "evolution"],
-                    normalizeField: null,
-                    tooltipField: ""
-                }
-            }]
-        }]
+        title: "<b>Population : {ARRONDISSE}</b>",
+        content: [
+            {
+                type: "fields",
+                fieldInfos: [
+                    { fieldName: "TOTAL1994", label: "Population 1994", format: { digitSeparator: true, places: 0 } },
+                    { fieldName: "TOTAL2004", label: "Population 2004", format: { digitSeparator: true, places: 0 } },
+                    { fieldName: "evolution_", label: "Évolution", format: { digitSeparator: true, places: 0 } }
+                ]
+            },
+            {
+                type: "media",
+                mediaInfos: [
+                    {
+                        type: "bar-chart",
+                        caption: "Évolution de la population entre 1994 et 2004",
+                        value: {
+                            fields: ["TOTAL1994", "TOTAL2004"],
+                            tooltipField: "ARRONDISSE"
+                        }
+                    },
+                    {
+                        type: "bar-chart",
+                        caption: "Variation nette de la population",
+                        value: {
+                            fields: ["evolution_"],
+                            normalizeField: null,
+                            tooltipField: "ARRONDISSE"
+                        }
+                    }
+                ]
+            }
+        ]
     });
+
     const casaPop = new FeatureLayer({
         url: "https://services5.arcgis.com/TbprQ2JL7Oe3pK0F/arcgis/rest/services/Projet_Elaboration_d’un_Géoportail/FeatureServer/0",
         outFields: ["PREFECTURE", "ARRONDISSE", "Shape_Leng", "Shape_Area", "MAROCAINS", "ETRANGERS", "TOTAL1994", "MÉNAGES199", "MAROCAIN_1", "ETRANGER_1", "TOTAL2004", "MÉNAGES200", "TAUX", "densite199", "densite200", "evolution_"],
@@ -197,7 +218,7 @@ require([
         // Recentrer la vue
         view.goTo({
             center: [-7.62, 33.59],
-            zoom: 10
+            zoom: 11
         });
     });
 

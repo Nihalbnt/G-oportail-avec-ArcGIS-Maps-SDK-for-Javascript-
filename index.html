@@ -123,13 +123,30 @@
                 <label for="populationFilter">Population :</label>
                 <select id="populationFilter">
                     <option value="">-- Toute la population --</option>
-                    <option value="Type = 'Acima'">Acima</option>
-                    <option value="Type = 'Grande Surface Spécialisée'">Grande Surface Spécialisée</option>
-                    <option value="Type = 'LABEL VIE'">LABEL VIE</option>
-                    <option value="Type = 'Marina'">Marina</option>
-                    <option value="Type = 'Marjane'">Marjane</option>
-                    <option value="Type = 'Metro'">Metro</option>
-                    <option value="Type = 'Twin Center'">Twin Center</option>
+                    <option value="TOTAL2004 <= 50000">Population 2004 ≤ 50,000</option>
+                    <option value="TOTAL2004 > 50000 AND TOTAL2004 <= 100000">50,000 < Population 2004 ≤
+                            100,000</option>
+                    <option value="TOTAL2004 > 100000 AND TOTAL2004 <= 200000">100,000 < Population 2004 ≤
+                            200,000</option>
+                    <option value="TOTAL2004 > 200000 AND TOTAL2004 <= 500000">200,000 < Population 2004 ≤
+                            500,000</option>
+                    <option value="TOTAL2004 > 500000">Population 2004 > 500,000</option>
+
+                    <option value="TOTAL1994 <= 50000">Population 1994 ≤ 50,000</option>
+                    <option value="TOTAL1994 > 50000 AND TOTAL1994 <= 100000">50,000 < Population 1994 ≤
+                            100,000</option>
+                    <option value="TOTAL1994 > 100000 AND TOTAL1994 <= 200000">100,000 < Population 1994 ≤
+                            200,000</option>
+                    <option value="TOTAL1994 > 200000 AND TOTAL1994 <= 500000">200,000 < Population 1994 ≤
+                            500,000</option>
+                    <option value="TOTAL1994 > 500000">Population 1994 > 500,000</option>
+
+                    <option value="evolution_ > 0 AND evolution_ <= 10000">Évolution 1994-2004: 0 - 10,000</option>
+                    <option value="evolution_ > 10000 AND evolution_ <= 50000">Évolution 1994-2004: 10,000 - 50,000
+                    </option>
+                    <option value="evolution_ > 50000 AND evolution_ <= 100000">Évolution 1994-2004: 50,000 - 100,000
+                    </option>
+                    <option value="evolution_ > 100000">Évolution 1994-2004 > 100,000</option>
                 </select>
             </div>
             <button id="resetFilters">Réinitialiser</button>
