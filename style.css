@@ -130,3 +130,82 @@ body,
 #reclamationForm button:hover {
     background-color: #45a049;
 }
+#cancelReclamation {
+    width: 100%;
+    padding: 8px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+#cancelReclamation:hover {
+    background-color: #d32f2f;
+}
+
+.filter-group button {
+    margin-bottom: 5px;
+}
+
+/* Ajoutez ces styles CSS */
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.button-group button {
+    flex: 1;
+}
+
+#addReclamation {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#addReclamation:hover {
+    background-color: #45a049;
+}
+
+#cancelReclamation {
+    background-color: #f44336;
+    color: white;
+}
+
+#cancelReclamation:hover {
+    background-color: #d32f2f;
+}
+
+/* Style pour le popup d'instruction */
+.esri-popup__header-title {
+    color: #333;
+    font-weight: bold;
+}
+
+.esri-popup__content {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Style pour le bouton de recentrage */
+.esri-widget--button {
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.esri-widget--button:hover {
+    background-color: #f5f5f5;
+}
+
+.esri-icon-home {
+    font-size: 16px;
+    color: #4c4c4c;
+}

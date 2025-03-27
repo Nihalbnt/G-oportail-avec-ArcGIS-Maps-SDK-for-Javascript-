@@ -1,47 +1,50 @@
 require([
-
-    "esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapToggle", "esri/layers/FeatureLayer", "esri/PopupTemplate", "esri/widgets/Search", "esri/widgets/Legend", "esri/widgets/Expand", "esri/layers/GraphicsLayer", "esri/widgets/Sketch", "esri/widgets/Sketch/SketchViewModel"
-
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/widgets/BasemapToggle",
+    "esri/layers/FeatureLayer",
+    "esri/PopupTemplate",
+    "esri/widgets/Search",
+    "esri/widgets/Legend",
+    "esri/widgets/Expand",
+    "esri/Graphic",
+    "esri/widgets/Editor",
+    "esri/widgets/Sketch/SketchViewModel"
 ], function (
-
-    esriConfig, Map, MapView, BasemapToggle, FeatureLayer, PopupTemplate, Search, Legend, Expand, GraphicsLayer, Sketch, SketchViewModel
-
+    esriConfig,
+    Map,
+    MapView,
+    BasemapToggle,
+    FeatureLayer,
+    PopupTemplate,
+    Search,
+    Legend,
+    Expand,
+    Graphic,
+    Editor,
+    SketchViewModel
 ) {
-    esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDbsYHINrVfeJUjyYqMCmBOCZynWcbmvlXsqFB-_AO4nxatgmMVtezmyarfJEpojgXuH45aZPFR0yShlgGdqejBQA0N0CnpAmPLHXFYweDNNED7uKlPktvTkbi2wLR4NfekPG9mc0ANV8qJyisS08y0Wt9H4Y0Keo4sSb8r7NZU0-M5smVAtHEVaaJVVXsts1Nv7OuU3Pv-xd_pN7G5GsBw.AT1_Dup3ajUs";
+    esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDbsYHINrVfeJUjyYqMCmBPmbrU3e9uW02F-FqRM_jrd82fnEE_GtWMu_0KbgQNZ2j7jSrHjgClx2aUOztkAMNl334xCd6Vx6Qj7BBfag8xU20rCJNOoT6Up0MPyuekjviprQiXrU3cx5IgJA01M9sXIp8Zz7FlqVOdyNt_qVJpMM4y5K6GrTMXQL6A1LL3s6Cr2QFfG7uG8aJJdP_cFY_I.AT1_Dup3ajUs";
 
     const map = new Map({
-        basemap: "arcgis-topographic" // Basemap layer service
+        basemap: "arcgis-topographic"
     });
 
     const view = new MapView({
         map: map,
-        center: [-7.62, 33.59], // Longitude, latitude
-        zoom: 13, // Zoom level
-        container: "viewDiv", // Div element
+        center: [-7.62, 33.59],
+        zoom: 13,
+        container: "viewDiv",
         popup: {
-            dockEnabled: false, // Désactive l'ancrage automatique
-            autoOpenEnabled: true, // Permet l'ouverture automatique
-            collapseEnabled: true, // Permet de réduire le popup
-            highlightEnabled: true // Met en surbrillance la feature sélectionnée
+            dockEnabled: false,
+            autoOpenEnabled: true,
+            collapseEnabled: true,
+            highlightEnabled: true
         }
     });
 
-    const basemapToggle = new BasemapToggle({
-        view: view,
-        nextBasemap: "arcgis-imagery"
-    });
-    view.ui.add(basemapToggle, "bottom-left");
-
-    //Search localisation bar
-    const searchWidget = new Search({
-        view: view
-    });
-    view.ui.add(searchWidget, { // Adds the search widget below other elements in the top left corner of the view
-        position: "top-left",
-        index: 2
-    });
-
-    //Couche communes et popup
+    // Couche communes et popup
     var popupCommune = new PopupTemplate({
         title: "<b>Commune: {COMMUNE_AR}</b>",
         content: "<p> PREFECTURE : {PREFECTURE} </p>" + "<p> COMMUNE : {COMMUNE_AR}  </p> " + "<p> Shape_Leng : {Shape_Leng} </p> " + "<p> Shape_Le_1 : {Shape_Le_1} </p> " + "<p> Shape_Area : {Shape_Area} </p> " + "<p> numéro : {numero} </p> " + "<p> PLAN D'AMENAGEMENT : {PLAN_AMENA} </p> ",
@@ -53,7 +56,7 @@ require([
     });
     map.add(communes);
 
-    //Couche Voirie et popup 
+    // Couche Voirie et popup 
     var popupVoirie = new PopupTemplate({
         title: "Voirie de Casablanca",
         content: [{
@@ -64,7 +67,7 @@ require([
                 },
                 {
                     "fieldName": "LENGTH", "label": "Longueur", "isEditable": true, "tooltip": "", "visible": true, "format": { "places": 1, "digitSeparator": true }, "stringFieldOption": "text-box"
-                },
+                }
             ]
         }]
     });
@@ -75,7 +78,7 @@ require([
     });
     map.add(voirie);
 
-    //Couche Population et Popup charts 
+    // Couche Population et Popup charts 
     var popupPopulation = new PopupTemplate({
         title: "<b>Population de l'Arrondissement : {ARRONDISSE}</b>",
         content: [
@@ -111,16 +114,14 @@ require([
             }
         ]
     });
-
     const casaPop = new FeatureLayer({
         url: "https://services5.arcgis.com/TbprQ2JL7Oe3pK0F/arcgis/rest/services/Projet_Elaboration_d’un_Géoportail/FeatureServer/0",
         outFields: ["PREFECTURE", "ARRONDISSE", "Shape_Leng", "Shape_Area", "MAROCAINS", "ETRANGERS", "TOTAL1994", "MÉNAGES199", "MAROCAIN_1", "ETRANGER_1", "TOTAL2004", "MÉNAGES200", "TAUX", "densite199", "densite200", "evolution_"],
         popupTemplate: popupPopulation
-
     });
     map.add(casaPop);
 
-    //Grandes surfaces et popup
+    // Grandes surfaces et popup
     var popupGrandeSurface = new PopupTemplate({
         title: "<b>Grandes Surfaces: {Grande surface wgs}</b>",
         content: "<p> Type : {Type} </p>" + "<p> Adresse : {Adresse}  </p> "
@@ -132,7 +133,7 @@ require([
     });
     map.add(grandeSurface);
 
-    //Couche Hotels et popup
+    // Couche Hotels et popup
     var popupHotels = new PopupTemplate({
         title: "<b>Hotels : {Hotels wgs}</b>",
         content: "<p> HOTEL : {HOTEL} </p>" + "<p> CATÉGORIE : {CATÉGORIE}  </p> " + "<p> ADRESSE : {ADRESSE} </p>" + "<p> PHONE_1 : {PHONE1}  </p> " + "<p> PHONE_2 : {PHONE_2} </p>" + "<p> CAPACITE DES CHAMBRES : {CAP_CHAMBR}  </p> " + "<p> CAPACITES DE LITS : {CAP_LIT} </p>" + "<p> Etoile : {Etoile}  </p> " + "<p> cap_reunio : {cap_reunio}  </p> "
@@ -144,9 +145,9 @@ require([
     });
     map.add(hotels);
 
-    //Reclamations
+    // Reclamations
     var popupReclamation = new PopupTemplate({
-        title: "<b>Reclamation  : {Reclamation wgs}</b>",
+        title: "<b>Reclamation : {Reclamation wgs}</b>",
         content: "<p> Objet : {Objet} </p>" + "<p> Message : {Message}  </p> " + "<p> Démarche : {Demarche_d} </p>" + "<p> Mail : {Mail}  </p> "
     });
     const reclamation = new FeatureLayer({
@@ -156,7 +157,43 @@ require([
     });
     map.add(reclamation);
 
-    // Création de la légende et du widget Expand
+    // Widgets
+    const basemapToggle = new BasemapToggle({
+        view: view,
+        nextBasemap: "arcgis-imagery"
+    });
+    view.ui.add(basemapToggle, "bottom-left");
+
+    const searchWidget = new Search({
+        view: view
+    });
+    view.ui.add(searchWidget, {
+        position: "top-left",
+        index: 2
+    });
+
+    // Création du bouton de recentrage
+    const centerButton = document.createElement("button");
+    centerButton.innerHTML = '<span class="esri-icon esri-icon-home"></span>';
+    centerButton.title = "Recentrer la carte";
+    centerButton.className = "esri-widget esri-widget--button esri-interactive";
+    centerButton.style.marginTop = "10px"; // Espacement depuis la barre de recherche
+
+    // Gestion du clic
+    centerButton.addEventListener("click", function () {
+        view.goTo({
+            center: [-7.62, 33.59], // Coordonnées de Casablanca
+            zoom: 13
+        });
+    });
+
+    // Ajout au UI
+    view.ui.add(centerButton, {
+        position: "top-left",
+        index: 3
+    });
+
+    // Légende
     const legend = new Legend({
         view: view,
         layerInfos: [
@@ -170,86 +207,12 @@ require([
     });
     const legendExpand = new Expand({
         view: view,
-        content: legend,  // La légende est placée dans ce widget
-        expandIconClass: "esri-icon-layer-list",  // Icône pour le bouton
-        expandTooltip: "Afficher la légende" // Tooltip au survol
+        content: legend,
+        expandIconClass: "esri-icon-layer-list",
+        expandTooltip: "Afficher la légende"
     });
-    view.ui.add(legendExpand, "bottom-right");  // Ajout du widget Expand à l'interface utilisateur
+    view.ui.add(legendExpand, "bottom-right");
 
-
-    // Outils d'édition pour ajouter des réclamations
-    const sketchViewModel = new SketchViewModel({
-        view: view,
-        layer: new GraphicsLayer()
-    });
-
-    const sketchWidget = new Sketch({
-        view: view,
-        layer: new GraphicsLayer(),
-        creationMode: "update"
-    });
-
-    view.ui.add(sketchWidget, "bottom-left" , 2 );
-
-    // Fonction pour ajouter une réclamation
-    document.getElementById("addReclamation").addEventListener("click", function() {
-        const objet = document.getElementById("Objet").value;
-        const message = document.getElementById("Message").value;
-        const mail = document.getElementById("Mail").value;
-
-        if (objet && message && mail) {
-            const point = view.center;
-
-            const newReclamation = {
-                attributes: {
-                    Objet: objet,
-                    Message: message,
-                    Demarche_d: "Nouveau", // Vous pouvez ajuster selon les valeurs
-                    Mail: mail
-                },
-                geometry: point
-            };
-
-            reclamation.applyEdits({
-                addFeatures: [newReclamation]
-            }).then(() => {
-                alert("Réclamation ajoutée avec succès !");
-            }).catch((error) => {
-                console.error("Erreur lors de l'ajout de la réclamation", error);
-            });
-        } else {
-            alert("Veuillez remplir tous les champs.");
-        }
-    });
-
-    // Fonction pour filtrer les réclamations selon un objet spécifique
-    document.getElementById("filterSelect").addEventListener("change", function(event) {
-        const selectedCommune = event.target.value;
-        reclamation.definitionExpression = selectedCommune ? `COMMUNE_AR = '${selectedCommune}'` : "";
-    });
-
-    // Réinitialiser les filtres
-    document.getElementById("resetFilters").addEventListener("click", function() {
-        reclamation.definitionExpression = "";
-        view.goTo({ center: [-7.62, 33.59], zoom: 13 });
-    });
-    // Fonction de requête spatiale
-    function queryFeaturelayer(geometry) {
-        const communeQuery = {
-            spatialRelationship: "intersects",
-            geometry: geometry,
-            outFields: ["PREFECTURE", "COMMUNE_AR", "Shape_Leng", "Shape_Le_1", "Shape_Area"],
-            returnGeometry: true
-        };
-
-        communes.queryFeatures(communeQuery)
-            .then((results) => {
-                console.log("Feature count: " + results.features.length);
-            })
-            .catch((error) => {
-                console.error("Erreur lors de la requête :", error);
-            });
-    }
     // Gestion des filtres
     document.getElementById("toggleFilters").addEventListener("click", function () {
         const panel = document.getElementById("filtersPanel");
@@ -258,45 +221,137 @@ require([
     });
 
     document.getElementById("resetFilters").addEventListener("click", function () {
-        // Réinitialiser les sélections
         document.getElementById("filterSelect").value = "";
         document.getElementById("hotelFilter").value = "";
         document.getElementById("surfaceFilter").value = "";
         document.getElementById("populationFilter").value = "";
 
-
-        // Réinitialiser les couches
         communes.definitionExpression = "";
         hotels.definitionExpression = "";
         grandeSurface.definitionExpression = "";
         casaPop.definitionExpression = "";
 
-        // Recentrer la vue
         view.goTo({
             center: [-7.62, 33.59],
             zoom: 11
         });
     });
 
-    // Filtre pour les communes
+    // Filtres
     document.getElementById("filterSelect").addEventListener("change", function (event) {
         communes.definitionExpression = event.target.value;
     });
 
-    // Filtre pour les hôtels
     document.getElementById("hotelFilter").addEventListener("change", function (event) {
         hotels.definitionExpression = event.target.value;
     });
 
-    // Filtre pour les grandes surfaces
     document.getElementById("surfaceFilter").addEventListener("change", function (event) {
         grandeSurface.definitionExpression = event.target.value;
     });
 
-    // Filtre pour les population
     document.getElementById("populationFilter").addEventListener("change", function (event) {
         casaPop.definitionExpression = event.target.value;
     });
 
+    // Outil d'édition pour les réclamations
+    let sketchViewModel = new SketchViewModel({
+        view: view,
+        layer: reclamation,
+        pointSymbol: {
+            type: "simple-marker",
+            color: [255, 0, 0],
+            outline: {
+                color: [255, 255, 255],
+                width: 2
+            }
+        }
+    });
 
+    // Activer le mode création de point au clic sur "Ajouter Réclamation"
+    document.getElementById("addReclamation").addEventListener("click", function () {
+        const objet = document.getElementById("Objet").value;
+        const message = document.getElementById("Message").value;
+        const mail = document.getElementById("Mail").value;
+
+        if (!objet || !message || !mail) {
+            alert("Veuillez remplir tous les champs avant de placer la réclamation sur la carte.");
+            return;
+        }
+
+        // Activer le mode création de point
+        sketchViewModel.create("point");
+
+        // Afficher un message d'instruction
+        view.popup.open({
+            title: "Ajout de réclamation",
+            content: "Cliquez sur la carte pour placer l'emplacement de votre réclamation",
+            location: view.center
+        });
+    });
+
+    // Lorsque l'utilisateur a fini de dessiner (place un point)
+    sketchViewModel.on("create", async function (event) {
+        if (event.state === "complete") {
+            const objet = document.getElementById("Objet").value;
+            const message = document.getElementById("Message").value;
+            const mail = document.getElementById("Mail").value;
+
+            // Créer un graphic avec les attributs de la réclamation
+            const newReclamation = new Graphic({
+                geometry: event.graphic.geometry,
+                attributes: {
+                    Objet: objet,
+                    Message: message,
+                    Demarche_d: "Nouveau",
+                    Mail: mail
+                }
+            });
+
+            try {
+                const result = await reclamation.applyEdits({
+                    addFeatures: [newReclamation]
+                });
+
+                if (result.addFeatureResults && result.addFeatureResults[0].success) {
+                    alert("Réclamation ajoutée avec succès !");
+                    // Réinitialiser le formulaire
+                    document.getElementById("Objet").value = "";
+                    document.getElementById("Message").value = "";
+                    document.getElementById("Mail").value = "";
+
+                    // Fermer le popup d'instruction
+                    view.popup.close();
+                } else {
+                    throw new Error("Échec de l'ajout : " + JSON.stringify(result));
+                }
+            } catch (error) {
+                console.error("Erreur détaillée:", error);
+                alert(`Erreur lors de l'ajout : ${error.message}`);
+            }
+        }
+    });
+
+    // Annuler la réclamation
+    document.getElementById("cancelReclamation").addEventListener("click", function () {
+        document.getElementById("Objet").value = "";
+        document.getElementById("Message").value = "";
+        document.getElementById("Mail").value = "";
+
+        // Annuler le mode création si actif
+        sketchViewModel.cancel();
+        view.popup.close();
+    });
+
+    // Annuler le mode création si l'utilisateur clique ailleurs
+    view.on("click", function (event) {
+        if (sketchViewModel.state === "active") {
+            sketchViewModel.cancel();
+            view.popup.close();
+        }
+    });
 });
+
+
+
+
