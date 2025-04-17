@@ -70,3 +70,8 @@ Ce projet consiste en l’élaboration d’un Géoportail interactif développé
 
 ---
 
+##Apercu visuel
+![Apercu du site](./Géoportail.png)
+![Apercu du site](./Géoportail2.png)
+
+
